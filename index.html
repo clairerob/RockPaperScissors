@@ -6,31 +6,45 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rock Paper Scissors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap"
+    rel="stylesheet">
+  <!-- <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap');
+  </style> -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class='header-container'>
-    <div>
-      <img src='./assets/logo.svg' />
+  <div class='container'>
+    <div class='header-container'>
+      <div>
+        <img class='header-logo' src='./assets/logo.svg' />
+      </div>
+      <div class='header-score'>
+        <h4 class='header-text'>SCORE</h4>
+        <h2 class='header-total'>12</h2>
+      </div>
     </div>
-    <div>
-      <h5>SCORE</h5>
-      <h2>12</h2>
+
+    <div class='button-group'>
+      <button class='move-button paper'><img src='./assets/icon-paper.svg' /></button>
+      <button class='move-button scissors'><img src='./assets/icon-scissors.svg' /></button>
+      <button class='move-button rock'><img src='./assets/icon-rock.svg' /></button>
     </div>
+
   </div>
 
   <div>
-    <button><img src='./assets/icon-paper.svg' /></button>
-    <button><img src='./assets/icon-scissors.svg' /></button>
-    <button><img src='./assets/icon-rock.svg' /></button>
+    <img class='background-shape' src='./assets/bg-triangle.svg' />
   </div>
 
+
+  <!-- 
   <div>
-    <img src='./assets/bg-triangle.svg' />
-  </div>
-
-
-
+    <button>RULES</button>
+  </div> -->
   <!-- <div>
       <img src='./assets/image-rules.svg' />
       <img src='./assets/icon-close.svg' />
