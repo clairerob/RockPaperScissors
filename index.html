@@ -24,20 +24,30 @@
       </div>
       <div class='header-score'>
         <h4 class='header-text'>SCORE</h4>
-        <h2 class='header-total'>12</h2>
+        <h2 class='header-total'>0:0</h2>
       </div>
     </div>
 
     <div class='button-group'>
-      <button class='move-button paper'><img src='./assets/icon-paper.svg' /></button>
-      <button class='move-button scissors'><img src='./assets/icon-scissors.svg' /></button>
-      <button class='move-button rock'><img src='./assets/icon-rock.svg' /></button>
+      <button class='move-button paper' data-selection='paper'><img src='./assets/icon-paper.svg'
+          data-selection='paper' /></button>
+      <button class='move-button scissors' data-selection='scissors'><img src='./assets/icon-scissors.svg'
+          data-selection='scissors' /></button>
+      <button class='move-button rock' data-selection='rock'><img src='./assets/icon-rock.svg'
+          data-selection='rock' /></button>
+    </div>
+
+    <div class='round-over hide'>
+      <h1 class='winner-text'></h1>
+      <button class='new-round'>keep playing</button>
+      <button class='reset-game'>restart game</button>
     </div>
 
   </div>
 
   <div>
     <img class='background-shape' src='./assets/bg-triangle.svg' />
+
   </div>
 
 
@@ -49,7 +59,7 @@
       <img src='./assets/image-rules.svg' />
       <img src='./assets/icon-close.svg' />
     </div> -->
-  <!-- <script src="./script.js"></script> -->
+  <script src="./script.js"></script>
 </body>
 
 </html>

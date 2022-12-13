@@ -1,5 +1,5 @@
 * {
-	border: 1px solid rgb(78, 16, 136);
+	/* border: 1px solid rgb(78, 16, 136); */
 	color: hsl(229, 25%, 31%);
 	margin: 0;
 	padding: 0;
@@ -53,6 +53,7 @@ body {
 	font-size: 0.9em;
 	letter-spacing: 0.1rem;
 	margin-top: 12px;
+	margin-left: 10px;
 }
 .header-total {
 	color: hsl(229, 25%, 31%);
@@ -64,12 +65,13 @@ body {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	gap: 70px;
+	/* gap: 70px; */
 	width: 400px;
 }
 .move-button {
 	background-color: white;
 	border-radius: 100%;
+	margin: 15px 25px;
 	height: 150px;
 	width: 150px;
 	z-index: 10;
@@ -85,7 +87,6 @@ body {
 .rock {
 	border: 18px solid hsl(349, 70%, 56%);
 	box-shadow: 0 0.5em 0 hsl(349, 71%, 52%);
-	margin-top: -45px;
 }
 
 .background-shape {
@@ -94,4 +95,17 @@ body {
 	left: calc(50% - 140px);
 	z-index: 1;
 	height: 250px;
+}
+
+.round-over button {
+	padding: 7px 20px;
+}
+.winner-text {
+	color: white;
+	font-size: 2.5em;
+	letter-spacing: 0.05em;
+}
+
+.hide {
+	display: none;
 }
