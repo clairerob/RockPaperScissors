@@ -28,20 +28,34 @@
       </div>
     </div>
 
-    <div class='button-group'>
-      <button class='move-button paper' data-selection='paper'><img src='./assets/icon-paper.svg'
-          data-selection='paper' /></button>
-      <button class='move-button scissors' data-selection='scissors'><img src='./assets/icon-scissors.svg'
-          data-selection='scissors' /></button>
-      <button class='move-button rock' data-selection='rock'><img src='./assets/icon-rock.svg'
-          data-selection='rock' /></button>
+    <div id='button-group'>
+      <div class='player-div'>
+        <h3 class='player-text hide' id='paper'>YOU PICKED</h3>
+        <button class='move-button paper' data-selection='paper'></button>
+      </div>
+      <div class='player-div'>
+        <h3 class='player-text hide' id='scissors'>YOU PICKED</h3>
+        <button class='move-button scissors' data-selection='scissors'></button>
+      </div>
+      <div class='player-div'>
+        <h3 class='player-text hide' id='rock'>YOU PICKED</h3>
+        <button class='move-button rock' data-selection='rock'></button>
+      </div>
+
+      <div class='round-over hide'>
+        <h1 class='winner-text'></h1>
+        <div class='final-buttons'>
+          <button class='new-round'>keep playing</button>
+          <button class='reset-game'>reset game</button>
+        </div>
+      </div>
+
+      <div class='computer-div'>
+        <h3 class='hide' id='computer-text'>THE HOUSE PICKED</h3>
+        <button class='move-button blank hide' id='computer-guess'></button>
+      </div>
     </div>
 
-    <div class='round-over hide'>
-      <h1 class='winner-text'></h1>
-      <button class='new-round'>keep playing</button>
-      <button class='reset-game'>restart game</button>
-    </div>
 
   </div>
 
