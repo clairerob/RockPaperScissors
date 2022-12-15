@@ -1,3 +1,5 @@
+const MOVE_SELECTIONS = ['rock', 'paper', 'scissors']
+
 const moveButtons = Array.from(document.querySelectorAll('.move-button'))
 moveButtons.forEach((btn) => btn.addEventListener('click', singleRound))
 
@@ -11,25 +13,27 @@ resetBtn.addEventListener('click', resetGame)
 
 const backgroundShape = document.querySelector('.background-shape')
 const roundOver = document.querySelector('.round-over')
+
 const playerWinnerGradient = document.querySelector('.player-winner-gradient')
 const computerWinnerGradient = document.querySelector(
 	'.computer-winner-gradient'
 )
 
 const scoreDisplay = document.querySelector('.header-total')
+function getInitialScore() {
+	if (
+		!localStorage.getItem('playerScore') ||
+		!localStorage.getItem('computerScore')
+	) {
+		localStorage.setItem('playerScore', '0')
+		localStorage.setItem('computerScore', '0')
+	}
+}
+let playerScore = parseInt(localStorage.getItem('playerScore'))
+let computerScore = parseInt(localStorage.getItem('computerScore'))
+scoreDisplay.innerText = `${playerScore}:${computerScore}`
 
-const MOVE_SELECTIONS = ['rock', 'paper', 'scissors']
-let currentScore = { computer: 0, player: 0 }
 let winner = ''
-
-function getPlayerSelection(e) {
-	return e.target.dataset.selection
-}
-function getComputerSelection() {
-	let choice = Math.floor(Math.random() * 3)
-	let computerSelection = MOVE_SELECTIONS[choice]
-	return computerSelection
-}
 
 function singleRound(e) {
 	moveButtons.forEach((btn) => btn.removeEventListener('click', singleRound))
@@ -44,13 +48,22 @@ function singleRound(e) {
 
 	findWinnerAndUpdateScore(playerSelection, computerSelection)
 	setTimeout(() => {
-		if (currentScore.computer >= 3 || currentScore.player >= 3) {
+		if (computerScore >= 3 || playerScore >= 3) {
 			updateGameOverUI()
 		} else {
 			updateStep4UI()
 		}
-		scoreDisplay.innerText = `${currentScore.player}:${currentScore.computer}`
+		scoreDisplay.innerText = `${playerScore}:${computerScore}`
 	}, 4500)
+}
+
+function getPlayerSelection(e) {
+	return e.target.dataset.selection
+}
+function getComputerSelection() {
+	let choice = Math.floor(Math.random() * 3)
+	let computerSelection = MOVE_SELECTIONS[choice]
+	return computerSelection
 }
 
 function findWinnerAndUpdateScore(playerSelection, computerSelection) {
@@ -62,14 +75,14 @@ function findWinnerAndUpdateScore(playerSelection, computerSelection) {
 		(computerSelection === 'scissors' && playerSelection === 'rock')
 	) {
 		winner = 'player'
-		currentScore = { ...currentScore, player: (currentScore.player += 1) }
+		localStorage.setItem('playerScore', (playerScore += 1))
 	} else if (
 		(playerSelection === 'rock' && computerSelection === 'paper') ||
 		(playerSelection === 'paper' && computerSelection === 'scissors') ||
 		(playerSelection === 'scissors' && computerSelection === 'rock')
 	) {
 		winner = 'computer'
-		currentScore = { ...currentScore, computer: (currentScore.computer += 1) }
+		localStorage.setItem('computerScore', (computerScore += 1))
 	}
 }
 
@@ -90,8 +103,6 @@ function updateStep2UI(playerSelection) {
 	playerText.classList.remove('hide')
 
 	computer.classList.remove('hide')
-
-	//make btns unclickable - enabled/disabled ?
 }
 
 function updateStep3UI(computerSelection) {
@@ -129,25 +140,24 @@ function updateGameOverUI() {
 }
 
 function resetGame() {
-	currentScore = { computer: 0, player: 0 }
+	localStorage.setItem('playerScore', '0')
+	localStorage.setItem('computerScore', '0')
 	updateNewRoundUI()
-	scoreDisplay.innerText = `${currentScore.player}:${currentScore.computer}`
+	scoreDisplay.innerText = '0:0'
 }
 
 function updateNewRoundUI() {
 	backgroundShape.classList.remove('hide')
 	document.getElementById('button-group').style.width = '400px'
-	moveButtons.map((item) => item.classList.remove('hide', 'current-choice'))
 	MOVE_SELECTIONS.map((move) => computer.classList.remove(move))
 	computer.classList.add('blank', 'hide')
 	computerText.classList.add('hide')
 	roundOver.classList.add('hide')
 	playerWinnerGradient.classList.add('hide')
 	computerWinnerGradient.classList.add('hide')
-
 	const playerText = document.querySelectorAll('.player-text')
 	playerText.forEach((el) => el.classList.add('hide'))
-
+	moveButtons.map((item) => item.classList.remove('hide', 'current-choice'))
 	moveButtons.forEach((btn) => btn.addEventListener('click', singleRound))
 }
 
