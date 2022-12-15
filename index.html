@@ -55,24 +55,36 @@
         <button class='move-button blank hide' id='computer-guess'></button>
       </div>
     </div>
-
-
   </div>
 
   <div>
     <img class='background-shape' src='./assets/bg-triangle.svg' />
-
   </div>
 
+  <div class='winner-gradients'>
+    <div class='gradient-box'>
+      <div class='player-winner-gradient hide'></div>
+    </div>
+    <div class='gradient-box'>
+      <div class='computer-winner-gradient hide'></div>
+    </div>
+  </div>
 
-  <!-- 
   <div>
-    <button>RULES</button>
-  </div> -->
-  <!-- <div>
-      <img src='./assets/image-rules.svg' />
-      <img src='./assets/icon-close.svg' />
-    </div> -->
+    <button id='rules-btn'>RULES</button>
+  </div>
+
+  <div class='modal-page' id='rules-modal'>
+    <div class='modal' onclick='event.stopPropagation()'>
+      <div class='modal-header'>
+        <h2>RULES</h2>
+        <img id='close-icon' src='./assets/icon-close.svg' />
+      </div>
+      <div class='modal-body'>
+        <img class='modal-img' src='./assets/image-rules.svg' />
+      </div>
+    </div>
+  </div>
   <script src="./script.js"></script>
 </body>
 

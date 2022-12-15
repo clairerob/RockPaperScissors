@@ -11,6 +11,10 @@ resetBtn.addEventListener('click', resetGame)
 
 const backgroundShape = document.querySelector('.background-shape')
 const roundOver = document.querySelector('.round-over')
+const playerWinnerGradient = document.querySelector('.player-winner-gradient')
+const computerWinnerGradient = document.querySelector(
+	'.computer-winner-gradient'
+)
 
 const scoreDisplay = document.querySelector('.header-total')
 
@@ -40,7 +44,7 @@ function singleRound(e) {
 
 	findWinnerAndUpdateScore(playerSelection, computerSelection)
 	setTimeout(() => {
-		if (currentScore.computer >= 2 || currentScore.player >= 2) {
+		if (currentScore.computer >= 3 || currentScore.player >= 3) {
 			updateGameOverUI()
 		} else {
 			updateStep4UI()
@@ -82,21 +86,12 @@ function updateStep2UI(playerSelection) {
 	)
 	playerBtn.classList.add('current-choice')
 
-	//ADD HIDE TO ALL PT CLASS ELEMENTS
 	const playerText = document.getElementById(`${playerSelection}`)
 	playerText.classList.remove('hide')
 
-	//MAKE PT GLOBAL TO REMOVE ELEMENT
-	//WINNER IMAGE APPENDED TO THIS OR COMPUTER DIV
-	// const playerText = document.createElement('h3')
-	// playerText.innerText = 'YOU PICKED'
-	// playerText.classList.add('player-text')
-	// const playerSelectionDiv = document.getElementById(`${playerSelection}`)
-	// playerSelectionDiv.insertBefore(playerText, playerBtn)
-
 	computer.classList.remove('hide')
 
-	//make btns unclickable
+	//make btns unclickable - enabled/disabled ?
 }
 
 function updateStep3UI(computerSelection) {
@@ -107,24 +102,30 @@ function updateStep3UI(computerSelection) {
 
 function updateStep4UI() {
 	let winningText
-	if (winner === 'player') winningText = 'YOU WIN'
-	else if (winner === 'computer') winningText = 'YOU LOSE'
-	else if (winner === 'none') winningText = "IT'S A DRAW"
+	if (winner === 'player') {
+		winningText = 'YOU WIN'
+		playerWinnerGradient.classList.remove('hide')
+	} else if (winner === 'computer') {
+		winningText = 'YOU LOSE'
+		computerWinnerGradient.classList.remove('hide')
+	} else if (winner === 'none') winningText = "IT'S A DRAW"
 	roundOver.classList.remove('hide')
 	newRound.classList.remove('hide')
 	document.querySelector('.winner-text').innerText = winningText
-	//add winner gradient
-	//spread layout
 }
 
 function updateGameOverUI() {
 	let winningText
-	if (winner === 'player') winningText = 'GAME OVER - YOU WON'
-	else if (winner === 'computer') winningText = 'GAME OVER - YOU LOSE'
+	if (winner === 'player') {
+		winningText = 'GAME OVER - YOU WON'
+		playerWinnerGradient.classList.remove('hide')
+	} else if (winner === 'computer') {
+		winningText = 'GAME OVER - YOU LOSE'
+		computerWinnerGradient.classList.remove('hide')
+	}
 	roundOver.classList.remove('hide')
 	newRound.classList.add('hide')
 	document.querySelector('.winner-text').innerText = winningText
-	//add more exciting winner UI
 }
 
 function resetGame() {
@@ -141,10 +142,27 @@ function updateNewRoundUI() {
 	computer.classList.add('blank', 'hide')
 	computerText.classList.add('hide')
 	roundOver.classList.add('hide')
+	playerWinnerGradient.classList.add('hide')
+	computerWinnerGradient.classList.add('hide')
+
+	const playerText = document.querySelectorAll('.player-text')
+	playerText.forEach((el) => el.classList.add('hide'))
 
 	moveButtons.forEach((btn) => btn.addEventListener('click', singleRound))
 }
 
-function showModal() {}
-//add rules modal
+const rulesModalBtn = document.querySelector('#rules-btn')
+const rulesModal = document.querySelector('#rules-modal')
+const closeModal = document.querySelector('#close-icon')
+rulesModalBtn.addEventListener('click', showModal)
+closeModal.addEventListener('click', hideModal)
+rulesModal.addEventListener('click', hideModal)
+
+function showModal() {
+	rulesModal.classList.add('open')
+}
+function hideModal(e) {
+	rulesModal.classList.remove('open')
+}
+
 //use random generator library
