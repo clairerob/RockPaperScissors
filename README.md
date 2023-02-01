@@ -4,5 +4,3 @@ This was my first time building an app that involved transitions within a single
 
 Next steps are to add mobile-friendly styling and/or extend to the five-way Rock, Paper, Scissors, Lizard, Spock game suggested by frontendmentor.
 
-Live version: https://frolicking-croissant-c57054.netlify.app/
-
